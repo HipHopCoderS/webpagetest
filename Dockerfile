@@ -54,7 +54,8 @@ RUN DIR=$(mktemp -d) && cd ${DIR} && \
 
 # x264
 RUN DIR=$(mktemp -d) && cd ${DIR} && \
-	      curl -Os ftp://ftp.videolan.org/pub/x264/snapshots/last_x264.tar.bz2 &&	\
+	      # curl -Os ftp://ftp.videolan.org/pub/x264/snapshots/last_x264.tar.bz2 &&	\
+	      wget http://ftp.videolan.org/pub/x264/snapshots/last_x264.tar.bz2 &&	\
 	      tar xvf last_x264.tar.bz2 &&	\
               cd x264* && \
               ./configure --prefix="$SRC" --bindir="${SRC}/bin" --enable-static && \
@@ -143,7 +144,8 @@ RUN yum -y install libjpeg-turbo-devel libjpeg-turbo-static libjpeg-turbo
 ## install exiftool
 RUN yum install -y perl-devel
 RUN DIR=$(mktemp -d) && cd ${DIR} && \
-              curl -Os http://owl.phy.queensu.ca/~phil/exiftool/Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz && \
+              # curl -Os http://owl.phy.queensu.ca/~phil/exiftool/Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz && \
+              wget http://owl.phy.queensu.ca/~phil/exiftool/Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz && \
               tar xvf Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz && \
               cd Image-ExifTool-${EXIFTOOL_VERSION} && \
               perl Makefile.PL && \
